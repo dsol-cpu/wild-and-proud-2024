@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://y2dqild55d3c"]
+
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_8upgy"]
+[ext_resource type="FontFile" uid="uid://dpw5hcmnmqs1w" path="res://assets/fonts/LibreBaskerville-Regular.ttf" id="1_jqrf7"]
+[ext_resource type="FontFile" uid="uid://cv0jwxgytulm2" path="res://assets/fonts/DMSerifText-Regular.ttf" id="2_ci20q"]
+[ext_resource type="Script" path="res://scripts/play_btn.gd" id="3_6cgjd"]
+[ext_resource type="Script" path="res://scripts/quit_btn.gd" id="4_uhfg5"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8upgy")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -99.5
+offset_right = 500.0
+offset_bottom = 99.5
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_jqrf7")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[left]All Aboard![/left]"
+fit_content = true
+
+[node name="Play" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ci20q")
+theme_override_font_sizes/font_size = 40
+text = "PLAY"
+flat = true
+alignment = 0
+script = ExtResource("3_6cgjd")
+m_menu_path = NodePath("../../..")
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ci20q")
+theme_override_font_sizes/font_size = 40
+text = "QUIT"
+flat = true
+alignment = 0
+script = ExtResource("4_uhfg5")

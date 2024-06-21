@@ -43,10 +43,15 @@ fit_content = true
 
 [node name="DialogueLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "YesYesYesyesyes"
 fit_content = true
+threaded = true
 script = ExtResource("1_i8gcc")
 skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 
-[node name="GridContainer" type="GridContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
