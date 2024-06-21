@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://blrvfu0omnymj"
+path="res://.godot/imported/dialogue_for_visual_novel_nhtest.dialogue-f08f11a7a42dcb135b8c27349d55322a.tres"
+
+[deps]
+
+source_file="res://examples/dialogue_for_visual_novel_nhtest.dialogue"
+dest_files=["res://.godot/imported/dialogue_for_visual_novel_nhtest.dialogue-f08f11a7a42dcb135b8c27349d55322a.tres"]
+
+[params]
+
+defaults=true

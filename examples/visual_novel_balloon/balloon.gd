@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
+@onready var example_particles: CPUParticles2D = $Balloon/RainbowSparkles
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -128,6 +129,12 @@ func add_portrait(character: String, slot: int = 0) -> void:
 func call_portrait(character: String, method: String) -> void:
 	portraits[character].call(method)
 
+func start_particles() -> void:
+	example_particles.emitting = true
+
+func stop_particles() -> void:
+	example_particles.emitting = false
+	
 
 func remove_portrait(character: String) -> void:
 	var portrait = portraits[character]
