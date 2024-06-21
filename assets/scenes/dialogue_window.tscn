@@ -1,27 +1,52 @@
-[gd_scene format=3 uid="uid://cehwdi53sy0rr"]
+[gd_scene load_steps=3 format=3 uid="uid://cehwdi53sy0rr"]
+
+[ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_label.gd" id="1_i8gcc"]
+[ext_resource type="Script" path="res://scripts/dialogue_window.gd" id="1_n53sm"]
 
 [node name="DialogueWindow" type="CanvasLayer"]
+script = ExtResource("1_n53sm")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="Panel" type="Panel" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -212.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -212.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer"]
 layout_mode = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "Speaker"
+fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
+[node name="DialogueLabel" type="RichTextLabel" parent="NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
+text = "YesYesYesyesyes"
+fit_content = true
+script = ExtResource("1_i8gcc")
+skip_pause_at_abbreviations = PackedStringArray("Mr", "Mrs", "Ms", "Dr", "etc", "eg", "ex")
 
 [node name="GridContainer" type="GridContainer" parent="NinePatchRect/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Button" type="Button" parent="NinePatchRect/MarginContainer"]
 layout_mode = 2
