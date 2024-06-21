@@ -11,9 +11,18 @@ config_version=5
 [application]
 
 config/name="WildAndProud2024"
+run/main_scene="res://assets/scenes/World.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dotnet]
 
 project/assembly_name="WildAndProud2024"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
