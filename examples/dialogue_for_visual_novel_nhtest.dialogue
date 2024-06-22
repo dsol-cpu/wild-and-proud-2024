@@ -10,8 +10,10 @@ do setupCocoPats()
 do start_particles()
 Coco: [wave amp=50.0 freq=5.0 connected=1]Meow.[/wave] [ID:t4c11347656]
 do pause_for_minigame()
-Nathan: [rainbow freq=1.0 sat=0.8 val=0.8]Here are some response options.[/rainbow] [ID:tba678dd331]
+Nathan: [rainbow freq=1.0 sat=0.8 val=0.8]Please pet the cat.[/rainbow] [ID:tba678dd331]
 do stop_particles()
+Nathan: Thank you for patting the cat.
+Nathan: Back to the choices.
 - First one [ID:tec2831274f]
 	Nathan: You picked the first one. [ID:ted9b57f70f]
 	#do call_portrait("coco", "bigmeow")
