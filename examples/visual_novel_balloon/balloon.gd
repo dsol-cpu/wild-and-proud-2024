@@ -25,6 +25,7 @@ var portraits: Dictionary = {}
 
 #I have no idea what I'm doing
 signal finish_pats
+signal timer_start
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -175,6 +176,17 @@ func remove_portrait(character: String) -> void:
 
 ### Helpers
 
+func setup_response_timer() -> void:
+	timer_start.emit()
+	print("TimerStarted")
+	
+func _finish_response_timer():
+	#Like...remove all choiced but last in the responses area. 
+	var number_of_children = responses_menu.get_child_count()
+	for n in (number_of_children - 1):
+		responses_menu.remove_child(responses_menu.get_child(1))
+	print("TimerFinished")
+	
 
 # Set up keyboard movement and signals for the response menu
 func configure_menu() -> void:
