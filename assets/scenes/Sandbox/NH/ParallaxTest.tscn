@@ -1,0 +1,117 @@
+[gd_scene load_steps=13 format=3 uid="uid://buul6y6c1g8qi"]
+
+[ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/autoparallax.gd" id="1_wncf7"]
+[ext_resource type="Texture2D" uid="uid://be4ua4j1fgsd6" path="res://assets/scenes/Sandbox/NH/traincartest.png" id="2_3dpbl"]
+[ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/programmaticShake.gd" id="3_cyjey"]
+
+[sub_resource type="Gradient" id="Gradient_3odb3"]
+colors = PackedColorArray(0.385558, 0.577629, 1, 1, 0.0157085, 0.248415, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u6sk4"]
+gradient = SubResource("Gradient_3odb3")
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0.0128205)
+
+[sub_resource type="Gradient" id="Gradient_amkqc"]
+colors = PackedColorArray(1, 0.521569, 0.407843, 1, 0.458824, 0.458824, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_65yc8"]
+gradient = SubResource("Gradient_amkqc")
+fill_from = Vector2(0.521368, 1)
+fill_to = Vector2(0.495726, 0)
+
+[sub_resource type="Gradient" id="Gradient_hlfrx"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ej3n1"]
+gradient = SubResource("Gradient_hlfrx")
+
+[sub_resource type="Gradient" id="Gradient_r0ccu"]
+colors = PackedColorArray(0.87451, 0.54902, 0, 1, 0, 0.452978, 0.0621155, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ev1t1"]
+gradient = SubResource("Gradient_r0ccu")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q5oug"]
+cull_mode = 2
+polygon = PackedVector2Array(8.265, 19.94, -14.635, 0, -6.64, 36, 5.375, 21.98)
+
+[node name="ParallaxTest" type="Node2D"]
+position = Vector2(587, 324)
+scale = Vector2(18.0573, 10.734)
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scroll_base_scale = Vector2(1.5, 1)
+scroll_ignore_camera_zoom = true
+script = ExtResource("1_wncf7")
+
+[node name="Day" type="Sprite2D" parent="ParallaxBackground"]
+position = Vector2(587, 324)
+scale = Vector2(18.0573, 10.734)
+texture = SubResource("GradientTexture2D_u6sk4")
+
+[node name="Dawn" type="Sprite2D" parent="ParallaxBackground"]
+visible = false
+position = Vector2(587, 324)
+scale = Vector2(18.0573, 10.734)
+texture = SubResource("GradientTexture2D_65yc8")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(2, 0)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="cloud2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(1044, 89)
+scale = Vector2(0.600001, 41.24)
+texture = SubResource("GradientTexture1D_ej3n1")
+
+[node name="cloud1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(613, 71)
+scale = Vector2(0.600001, 41.24)
+texture = SubResource("GradientTexture1D_ej3n1")
+
+[node name="cloud3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(196, 105)
+scale = Vector2(0.600001, 41.24)
+texture = SubResource("GradientTexture1D_ej3n1")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(3, 0)
+motion_scale = Vector2(3, 0)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="tree1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(962, 442)
+rotation = -1.5708
+scale = Vector2(1.16652, 54.9845)
+texture = SubResource("GradientTexture1D_ev1t1")
+
+[node name="tree2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(709, 430)
+rotation = -1.5708
+scale = Vector2(1.16652, 54.9845)
+texture = SubResource("GradientTexture1D_ev1t1")
+
+[node name="tree3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(256, 418)
+rotation = -1.5708
+scale = Vector2(1.16652, 54.9845)
+texture = SubResource("GradientTexture1D_ev1t1")
+
+[node name="trainwindow" type="Sprite2D" parent="."]
+position = Vector2(0, 3.26067)
+scale = Vector2(0.0541231, 0.078574)
+texture = ExtResource("2_3dpbl")
+script = ExtResource("3_cyjey")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
+position = Vector2(-10.1898, -41.0844)
+color = Color(0.713726, 0.870588, 0.364706, 1)
+blend_mode = 2
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.368627)
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+visible = false
+position = Vector2(0, -22.7315)
+occluder = SubResource("OccluderPolygon2D_q5oug")

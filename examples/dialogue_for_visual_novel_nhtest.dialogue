@@ -1,5 +1,5 @@
 ~ start
-
+#do stop_timer()
 do set_background("mountain-view")
 do wait(0.5)
 do add_portrait("nathan", 0)
@@ -16,14 +16,17 @@ Nathan: Thank you for patting the cat.
 Nathan: Back to the choices.
 do setup_response_timer()
 - Do nothing
+	do stop_timer()
 	Nathan: Wow you did nothing.
 	Nathan: Coco didn't like that.
 	do call_portrait("coco", "meow")
 	Coco: Meow.
 - First one [ID:tec2831274f]
+	do stop_timer()
 	Nathan: You picked the first one. [ID:ted9b57f70f]
 	#do call_portrait("coco", "bigmeow")
 - Second one [ID:te9670331c2]
+	do stop_timer()
 	Nathan: You picked the second one. [ID:t14bc171a9f]
 - Start again [ID:ta04a1307f6] => start
 - End the conversation [ID:t3211e3adf8] => END

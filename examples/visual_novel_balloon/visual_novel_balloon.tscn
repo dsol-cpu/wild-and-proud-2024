@@ -163,5 +163,6 @@ script = ExtResource("3_kjfv6")
 
 [connection signal="finish_pats" from="." to="." method="_on_finish_pats"]
 [connection signal="timer_start" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_start"]
+[connection signal="timer_stop" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_stop"]
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
 [connection signal="timerFinished" from="TimerContain/Timer" to="." method="_finish_response_timer"]

@@ -11,6 +11,7 @@ signal timerFinished
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	timerValue = timerDefault
+	self.scale.x = 0
 
 func _start_timer():
 	timerValue = timerDefault
@@ -30,3 +31,8 @@ func _process(delta):
 func _on_visual_novel_balloon_timer_start():
 	_start_timer()
 	# Replace with function body.
+
+
+func _on_visual_novel_balloon_timer_stop():
+	timerActive = false
+	self.scale.x = 0
