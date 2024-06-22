@@ -1,9 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://c4mqdjcsxxm38"]
 
-[ext_resource type="PackedScene" uid="uid://cehwdi53sy0rr" path="res://assets/scenes/dialogue_window.tscn" id="1_cmsvy"]
+[ext_resource type="PackedScene" uid="uid://y2dqild55d3c" path="res://assets/scenes/main_menu.tscn" id="2_djfhu"]
 
 [node name="World" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="DialogueWindow" parent="." instance=ExtResource("1_cmsvy")]
+[node name="MainMenu" parent="." instance=ExtResource("2_djfhu")]
+custom_minimum_size = Vector2(500, 0)
+anchors_preset = 1
+anchor_left = 1.0
+anchor_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 1
+main_path = NodePath("..")
