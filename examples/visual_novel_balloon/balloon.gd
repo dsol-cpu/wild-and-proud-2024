@@ -17,7 +17,14 @@ var temporary_game_states: Array = []
 ## See if we are waiting for the player
 var is_waiting_for_input: bool = false
 
+## Hard lock input at times for reasons
+var input_locked: bool = false
+
 var portraits: Dictionary = {}
+
+
+#I have no idea what I'm doing
+signal finish_pats
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -78,6 +85,8 @@ var dialogue_line: DialogueLine:
 	get:
 		return dialogue_line
 
+func coco_pat_complete() -> void:
+	print("somehow pat")
 
 func _ready() -> void:
 	response_template.hide()
@@ -86,6 +95,10 @@ func _ready() -> void:
 
 func _unhandled_input(_event: InputEvent) -> void:
 	# Only the balloon is allowed to handle input while it's showing
+	
+	#Okay so if input is locked...let it through and don't pre-handle
+	if input_locked: return
+	
 	get_viewport().set_input_as_handled()
 
 
@@ -99,6 +112,7 @@ func start(dialogue_resource: DialogueResource, title: String, extra_game_states
 
 ## Go to the next line
 func next(next_id: String) -> void:
+	if input_locked: return
 	self.dialogue_line = await resource.get_next_dialogue_line(next_id, temporary_game_states)
 
 
@@ -128,12 +142,24 @@ func add_portrait(character: String, slot: int = 0) -> void:
 
 func call_portrait(character: String, method: String) -> void:
 	portraits[character].call(method)
+	
+func setupCocoPats() -> void:
+	portraits["coco"].setup_signal_link(self)
 
 func start_particles() -> void:
 	example_particles.emitting = true
 
 func stop_particles() -> void:
 	example_particles.emitting = false
+	
+func pause_for_minigame() -> void:
+	print("Hi do something")
+	input_locked = true
+	
+func unpause_from_minigame() -> void:
+	print("Back to stuff")
+	input_locked = false
+	next(dialogue_line.next_id)
 	
 
 func remove_portrait(character: String) -> void:
@@ -214,6 +240,7 @@ func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
+		if input_locked: return
 		responses_menu.modulate.a = 0.0
 		next(dialogue_line.responses[item.get_index()].next_id)
 	elif event.is_action_pressed("ui_accept") and item in get_responses():
@@ -222,6 +249,9 @@ func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 
 
 func _on_balloon_gui_input(event: InputEvent) -> void:
+	#my own custom thing
+	if input_locked: return
+	
 	if not is_waiting_for_input: return
 	if dialogue_line.responses.size() > 0: return
 
@@ -232,3 +262,8 @@ func _on_balloon_gui_input(event: InputEvent) -> void:
 		next(dialogue_line.next_id)
 	elif event.is_action_pressed("ui_accept") and get_viewport().gui_get_focus_owner() == balloon:
 		next(dialogue_line.next_id)
+
+
+func _on_finish_pats():
+	print("Pats finished!")
+	unpause_from_minigame() # Replace with function body.

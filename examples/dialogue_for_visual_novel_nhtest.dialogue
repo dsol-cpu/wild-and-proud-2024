@@ -6,8 +6,10 @@ do add_portrait("nathan", 0)
 Nathan: Hi, I'm [color=red]not[/color] [b]Nathan[/b] and this is [i]Coco[/i]. [ID:tf885328afb]
 do add_portrait("coco", 4)
 do call_portrait("coco", "meow")
+do setupCocoPats()
 do start_particles()
 Coco: [wave amp=50.0 freq=5.0 connected=1]Meow.[/wave] [ID:t4c11347656]
+do pause_for_minigame()
 Nathan: [rainbow freq=1.0 sat=0.8 val=0.8]Here are some response options.[/rainbow] [ID:tba678dd331]
 do stop_particles()
 - First one [ID:tec2831274f]
