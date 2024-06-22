@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://giboqf1jc5j1"]
 
 [ext_resource type="Texture2D" uid="uid://bg7dngh2kog5f" path="res://examples/visual_novel_balloon/portraits/coco.png" id="1_7fpx8"]
-[ext_resource type="Script" path="res://assets/scenes/Sandbox/testenter.gd" id="2_manmt"]
+[ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/testenter.gd" id="2_manmt"]
 [ext_resource type="Texture2D" uid="uid://brfryqmfc0vy2" path="res://examples/point_n_click_balloon/characters/coco.png" id="3_8foqj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ff3i"]
