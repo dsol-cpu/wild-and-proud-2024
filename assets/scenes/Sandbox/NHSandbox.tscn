@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://giboqf1jc5j1"]
+
+[ext_resource type="Texture2D" uid="uid://bg7dngh2kog5f" path="res://examples/visual_novel_balloon/portraits/coco.png" id="1_7fpx8"]
+[ext_resource type="Script" path="res://assets/scenes/Sandbox/testenter.gd" id="2_manmt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ff3i"]
+
+[node name="NhSandbox" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(432, 296)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("1_7fpx8")
+
+[node name="Area2D" type="Area2D" parent="Node2D"]
+position = Vector2(57, -128)
+script = ExtResource("2_manmt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Area2D"]
+scale = Vector2(5.38, 5.38)
+shape = SubResource("RectangleShape2D_2ff3i")

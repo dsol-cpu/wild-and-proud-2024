@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://chur0yqvpxxja"]
+[gd_scene load_steps=8 format=3 uid="uid://chur0yqvpxxja"]
 
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/portraits/coco.gd" id="1_lvpqe"]
 [ext_resource type="Texture2D" uid="uid://bg7dngh2kog5f" path="res://examples/visual_novel_balloon/portraits/coco.png" id="2_2nynt"]
+[ext_resource type="Script" path="res://examples/visual_novel_balloon/portraits/coco_pat.gd" id="3_8cte8"]
 
 [sub_resource type="Animation" id="Animation_j4dkb"]
 resource_name = "Meow"
@@ -41,6 +42,8 @@ _data = {
 "RESET": SubResource("Animation_bh7hh")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdj4d"]
+
 [node name="Coco" type="Node2D"]
 script = ExtResource("1_lvpqe")
 
@@ -54,3 +57,11 @@ offset = Vector2(0, -190)
 libraries = {
 "": SubResource("AnimationLibrary_un71v")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-9.135, -162.165)
+scale = Vector2(6.575, 2.335)
+script = ExtResource("3_8cte8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_rdj4d")
