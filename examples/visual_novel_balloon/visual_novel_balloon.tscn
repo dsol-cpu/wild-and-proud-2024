@@ -185,4 +185,6 @@ autoplay = true
 [connection signal="timer_start" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_start"]
 [connection signal="timer_stop" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_stop"]
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="gui_input" from="ResponseTemplate" to="." method="_accept_gui_input"]
+[connection signal="mouse_entered" from="ResponseTemplate" to="." method="_play_on_hover_sound"]
 [connection signal="timerFinished" from="TimerContain/Timer" to="." method="_finish_response_timer"]

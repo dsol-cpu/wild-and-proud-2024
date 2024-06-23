@@ -178,7 +178,7 @@ func remove_portrait(character: String) -> void:
 	portrait.queue_free()
 
 func play_sound(sound_effect: String) -> void:
-	var soundres = load("res://assets/sounds/sfx/%s.wav" % sound_effect)
+	var soundres = load("res://assets/sounds/sfx/%s" % sound_effect)
 	audio_sfx.stream = soundres
 	audio_sfx.play()
 
@@ -266,15 +266,26 @@ func _on_response_mouse_entered(item: Control) -> void:
 
 	item.grab_focus()
 
+func _play_on_hover_sound() -> void:
+	print("trying to play sound")
+	var soundres = load("res://assets/sounds/sfx/pleasing-bell.wav")
+	audio_sfx.stream = soundres
+	audio_sfx.play()
+	
+func _accept_gui_input(event: InputEvent) -> void:
+	print("Got here through accept gui input,")
+	_play_on_hover_sound()
 
 func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	if "Disallowed" in item.name: return
+	
 
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		if input_locked: return
 		responses_menu.modulate.a = 0.0
+		_play_on_hover_sound()
 		next(dialogue_line.responses[item.get_index()].next_id)
 	elif event.is_action_pressed("ui_accept") and item in get_responses():
 		responses_menu.modulate.a = 0.0
