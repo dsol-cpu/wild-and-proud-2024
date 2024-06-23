@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://buul6y6c1g8qi"]
 
 [ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/autoparallax.gd" id="1_wncf7"]
-[ext_resource type="Texture2D" uid="uid://be4ua4j1fgsd6" path="res://assets/scenes/Sandbox/NH/traincartest.png" id="2_3dpbl"]
+[ext_resource type="Texture2D" uid="uid://co52l7cs63lmo" path="res://assets/art/backgrounds/background01.png" id="2_8gesc"]
 [ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/programmaticShake.gd" id="3_cyjey"]
 
 [sub_resource type="Gradient" id="Gradient_3odb3"]
@@ -35,7 +35,7 @@ gradient = SubResource("Gradient_r0ccu")
 cull_mode = 2
 polygon = PackedVector2Array(8.265, 19.94, -14.635, 0, -6.64, 36, 5.375, 21.98)
 
-[node name="ParallaxTest" type="Node2D"]
+[node name="BackgroundWithParallax" type="Node2D"]
 position = Vector2(587, 324)
 scale = Vector2(18.0573, 10.734)
 
@@ -98,10 +98,12 @@ scale = Vector2(1.16652, 54.9845)
 texture = SubResource("GradientTexture1D_ev1t1")
 
 [node name="trainwindow" type="Sprite2D" parent="."]
-position = Vector2(0, 3.26067)
+position = Vector2(0.996827, 10.5273)
 scale = Vector2(0.0541231, 0.078574)
-texture = ExtResource("2_3dpbl")
+texture = ExtResource("2_8gesc")
 script = ExtResource("3_cyjey")
+shakeIntensity = 0.1
+shakeReturnTime = 0.1
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false

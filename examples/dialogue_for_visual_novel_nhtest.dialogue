@@ -1,6 +1,7 @@
 ~ start
 #do stop_timer()
-do set_background("mountain-view")
+#do set_background("mountain-view")
+do set_custom_background("background01")
 do wait(0.5)
 do add_portrait("nathan", 0)
 Nathan: Hi, I'm [color=red]not[/color] [b]Nathan[/b] and this is [i]Coco[/i]. [ID:tf885328afb]

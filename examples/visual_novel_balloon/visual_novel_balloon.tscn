@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cxae2nu1rsyeo"]
+[gd_scene load_steps=9 format=3 uid="uid://cxae2nu1rsyeo"]
 
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/balloon.gd" id="1_5w8hw"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="1_ebrfe"]
+[ext_resource type="PackedScene" uid="uid://buul6y6c1g8qi" path="res://assets/scenes/Sandbox/NH/ParallaxTest.tscn" id="2_3eav1"]
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/Timer.gd" id="3_kjfv6"]
+[ext_resource type="AudioStream" uid="uid://b1d7qvviml842" path="res://assets/sounds/music/background/swaying03.wav" id="4_ykr5b"]
 
 [sub_resource type="Gradient" id="Gradient_jmrjs"]
 offsets = PackedFloat32Array(0, 0.126667, 0.273333, 0.433333, 0.593333, 0.786667, 1)
@@ -43,29 +45,33 @@ corner_radius_bottom_left = 5
 [node name="VisualNovelBalloon" type="CanvasLayer"]
 script = ExtResource("1_5w8hw")
 
+[node name="ParallaxTest" parent="." instance=ExtResource("2_3eav1")]
+
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -195.55
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 3
 stretch_mode = 6
 
 [node name="Slot0" type="Marker2D" parent="."]
-position = Vector2(181, 448)
+position = Vector2(187, 700)
 
 [node name="Slot1" type="Marker2D" parent="."]
-position = Vector2(358, 448)
+position = Vector2(364, 700)
 
 [node name="Slot2" type="Marker2D" parent="."]
-position = Vector2(553, 448)
+position = Vector2(559, 700)
 
 [node name="Slot3" type="Marker2D" parent="."]
-position = Vector2(768, 448)
+position = Vector2(774, 700)
 
 [node name="Slot4" type="Marker2D" parent="."]
-position = Vector2(947, 448)
+position = Vector2(953, 700)
 
 [node name="Balloon" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 200)
@@ -160,6 +166,10 @@ layout_mode = 2
 offset_right = 200.0
 offset_bottom = 40.0
 script = ExtResource("3_kjfv6")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ykr5b")
+autoplay = true
 
 [connection signal="finish_pats" from="." to="." method="_on_finish_pats"]
 [connection signal="timer_start" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_start"]

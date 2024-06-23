@@ -124,6 +124,8 @@ func next(next_id: String) -> void:
 func set_background(background_name: String) -> void:
 	background.texture = load("res://examples/visual_novel_balloon/backgrounds/%s.jpg" % background_name)
 
+func set_custom_background(background_name: String) -> void:
+	background.texture = load("res://assets/art/backgrounds/%s.png" % background_name)
 
 func add_portrait(character: String, slot: int = 0) -> void:
 	var slot_marker: Marker2D = get_node("Slot%d" % slot)

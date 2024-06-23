@@ -9,8 +9,14 @@ extends Sprite2D
 @export var shakeIntensity : float = 0.25
 #after doing a shake, how long should it take to return
 @export var shakeReturnTime : float = 0.25
+
+#how much to lerp a second. 
+@export var shakeLerpVelocity : float = 0.1
+
 var default_x
 var default_y
+var target_x: float
+var target_y: float
 var shakeFreqTimer = 0
 var shakeReturnTimer = 0
 var shaken: bool = false
@@ -19,21 +25,29 @@ var shaken: bool = false
 func _ready():
 	default_x = position.x
 	default_y = position.y
+	target_x = default_x
+	target_y = default_y
 	pass # Replace with function body.
 
 func _set_shaken_position():
 	var random_x = randf_range(-1 * shakeIntensity, 1 * shakeIntensity)
 	var random_y = randf_range(0, 1 * shakeIntensity)
-	position.x = default_x + random_x
-	position.y = default_y + random_y
+	target_x = default_x + random_x
+	target_y = default_y + random_y
 
 func _set_default_position():
-	position.x = default_x
-	position.y = default_y
+	target_x = default_x
+	target_y = default_y
 
+func _lerp_to_target(t):
+	var target_vec = Vector2(target_x, target_y)
+	position = position.lerp(target_vec, t)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (shaken):
+		_lerp_to_target(shakeReturnTimer / shakeReturnTime)
 		shakeReturnTimer += delta
 		if (shakeReturnTimer >= shakeReturnTime):
 			shakeReturnTimer = randf_range(0, shakeReturnTime / 2)
@@ -41,6 +55,7 @@ func _process(delta):
 			shaken = false
 	else:
 		shakeFreqTimer += delta
+		_lerp_to_target(shakeFreqTimer / shakeFrequency)
 		if (shakeFreqTimer >= shakeFrequency):
 			shakeFreqTimer = randf_range(0, shakeFrequencyVariance)
 			_set_shaken_position()
