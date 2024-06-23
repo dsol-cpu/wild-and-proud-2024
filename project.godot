@@ -21,8 +21,8 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [display]
 
-window/size/viewport_width=1200
-window/size/viewport_height=900
+window/size/viewport_width=1280
+window/size/viewport_height=920
 
 [dotnet]
 

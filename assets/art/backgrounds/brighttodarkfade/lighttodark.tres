@@ -1,0 +1,50 @@
+[gd_resource type="SpriteFrames" load_steps=11 format=3 uid="uid://cohe2gw4hq8bb"]
+
+[ext_resource type="Texture2D" uid="uid://c00vaj8qynxiq" path="res://assets/art/backgrounds/brighttodarkfade/0001.png" id="1_ryp5j"]
+[ext_resource type="Texture2D" uid="uid://bvm51cw882mo3" path="res://assets/art/backgrounds/brighttodarkfade/0002.png" id="2_hoy1y"]
+[ext_resource type="Texture2D" uid="uid://dxg0bit7ifl08" path="res://assets/art/backgrounds/brighttodarkfade/0003.png" id="3_c2nko"]
+[ext_resource type="Texture2D" uid="uid://dltja504n2ff8" path="res://assets/art/backgrounds/brighttodarkfade/0004.png" id="4_hcaaj"]
+[ext_resource type="Texture2D" uid="uid://w1p76e2g178r" path="res://assets/art/backgrounds/brighttodarkfade/0005.png" id="5_5hykm"]
+[ext_resource type="Texture2D" uid="uid://xcok3wrxw0do" path="res://assets/art/backgrounds/brighttodarkfade/0006.png" id="6_pnk6g"]
+[ext_resource type="Texture2D" uid="uid://dyv72lqbk4g3" path="res://assets/art/backgrounds/brighttodarkfade/0007.png" id="7_ckpni"]
+[ext_resource type="Texture2D" uid="uid://myr6hhu6trxw" path="res://assets/art/backgrounds/brighttodarkfade/0008.png" id="8_swgnn"]
+[ext_resource type="Texture2D" uid="uid://du5fs5tnv8i6b" path="res://assets/art/backgrounds/brighttodarkfade/0009.png" id="9_678fi"]
+[ext_resource type="Texture2D" uid="uid://c2lxml3imrouf" path="res://assets/art/backgrounds/brighttodarkfade/0010.png" id="10_4uc54"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ryp5j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_hoy1y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_c2nko")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_hcaaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_5hykm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pnk6g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ckpni")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_swgnn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_678fi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_4uc54")
+}],
+"loop": false,
+"name": &"default",
+"speed": 8.0
+}]

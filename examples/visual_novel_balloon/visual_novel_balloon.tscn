@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://cxae2nu1rsyeo"]
+[gd_scene load_steps=10 format=3 uid="uid://cxae2nu1rsyeo"]
 
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/balloon.gd" id="1_5w8hw"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="1_ebrfe"]
 [ext_resource type="PackedScene" uid="uid://buul6y6c1g8qi" path="res://assets/scenes/Sandbox/NH/ParallaxTest.tscn" id="2_3eav1"]
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/Timer.gd" id="3_kjfv6"]
 [ext_resource type="AudioStream" uid="uid://b1d7qvviml842" path="res://assets/sounds/music/background/swaying03.wav" id="4_ykr5b"]
+[ext_resource type="AudioStream" uid="uid://bk584x3ftq866" path="res://assets/sounds/ambiance/197124__avakas__empty-train-moving-slowly-recorded-inside-passenger-car.wav" id="6_ixxjm"]
 
 [sub_resource type="Gradient" id="Gradient_jmrjs"]
 offsets = PackedFloat32Array(0, 0.126667, 0.273333, 0.433333, 0.593333, 0.786667, 1)
@@ -80,6 +81,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -194.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -141,10 +144,10 @@ offset_bottom = -0.144043
 grow_vertical = 0
 
 [node name="ResponseTemplate" type="RichTextLabel" parent="."]
-offset_left = 48.0
-offset_top = 694.0
-offset_right = 399.0
-offset_bottom = 740.0
+offset_left = 57.0
+offset_top = 949.0
+offset_right = 408.0
+offset_bottom = 995.0
 mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_sr5y7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ma11q")
@@ -167,8 +170,13 @@ offset_right = 200.0
 offset_bottom = 40.0
 script = ExtResource("3_kjfv6")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_ykr5b")
+autoplay = true
+
+[node name="ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ixxjm")
+volume_db = -8.0
 autoplay = true
 
 [connection signal="finish_pats" from="." to="." method="_on_finish_pats"]
