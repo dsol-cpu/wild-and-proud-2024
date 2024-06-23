@@ -5,7 +5,7 @@ var minScale: float = 0
 var timerDefault: float = 5
 var timerValue
 var timerActive: bool = false
-@onready var pTopBalloon: Node2D = $VisualNovelBalloon
+#@onready var pTopBalloon: Node2D = $VisualNovelBalloon
 signal timerFinished
 
 # Called when the node enters the scene tree for the first time.

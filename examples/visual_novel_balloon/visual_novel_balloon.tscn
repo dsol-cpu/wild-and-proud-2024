@@ -179,6 +179,8 @@ stream = ExtResource("6_ixxjm")
 volume_db = -8.0
 autoplay = true
 
+[node name="AudioSFX" type="AudioStreamPlayer" parent="."]
+
 [connection signal="finish_pats" from="." to="." method="_on_finish_pats"]
 [connection signal="timer_start" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_start"]
 [connection signal="timer_stop" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_stop"]

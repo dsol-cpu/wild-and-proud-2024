@@ -1,10 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://buul6y6c1g8qi"]
+[gd_scene load_steps=16 format=3 uid="uid://buul6y6c1g8qi"]
 
 [ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/autoparallax.gd" id="1_wncf7"]
 [ext_resource type="Texture2D" uid="uid://cg8sd0xxp4yia" path="res://assets/art/backgrounds/parallaxAssets/tree01.png" id="2_6orsa"]
+[ext_resource type="Texture2D" uid="uid://b2i03n1vcxykx" path="res://assets/art/backgrounds/parallaxAssets/cloud1.png" id="2_bljex"]
 [ext_resource type="Texture2D" uid="uid://b4em4mkak442p" path="res://assets/art/backgrounds/parallaxAssets/hills_far.png" id="2_qammr"]
 [ext_resource type="Texture2D" uid="uid://bjsriaihm7of3" path="res://assets/art/backgrounds/parallaxAssets/hills_close.png" id="3_4dhoq"]
 [ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/programmaticShake.gd" id="3_cyjey"]
+[ext_resource type="Texture2D" uid="uid://b1w2q1iwkmcje" path="res://assets/art/backgrounds/parallaxAssets/cloud2.png" id="3_xtj25"]
+[ext_resource type="Texture2D" uid="uid://dh7w7aepshtyv" path="res://assets/art/backgrounds/parallaxAssets/cloud3.png" id="4_3w75x"]
 [ext_resource type="SpriteFrames" uid="uid://cohe2gw4hq8bb" path="res://assets/art/backgrounds/brighttodarkfade/lighttodark.tres" id="4_811r0"]
 [ext_resource type="Script" path="res://assets/scenes/Sandbox/NH/animatedBackgroundChange.gd" id="5_3kcew"]
 
@@ -23,11 +26,6 @@ colors = PackedColorArray(1, 0.521569, 0.407843, 1, 0.458824, 0.458824, 1, 1)
 gradient = SubResource("Gradient_amkqc")
 fill_from = Vector2(0.521368, 1)
 fill_to = Vector2(0.495726, 0)
-
-[sub_resource type="Gradient" id="Gradient_hlfrx"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_ej3n1"]
-gradient = SubResource("Gradient_hlfrx")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_q5oug"]
 cull_mode = 2
@@ -57,20 +55,17 @@ texture = SubResource("GradientTexture2D_65yc8")
 motion_scale = Vector2(-0.05, 0)
 motion_mirroring = Vector2(1200, 0)
 
-[node name="cloud2" type="Sprite2D" parent="ParallaxBackground/clouds"]
-position = Vector2(1044, 89)
-scale = Vector2(0.600001, 41.24)
-texture = SubResource("GradientTexture1D_ej3n1")
-
 [node name="cloud1" type="Sprite2D" parent="ParallaxBackground/clouds"]
-position = Vector2(613, 71)
-scale = Vector2(0.600001, 41.24)
-texture = SubResource("GradientTexture1D_ej3n1")
+position = Vector2(279, 73)
+texture = ExtResource("2_bljex")
+
+[node name="cloud2" type="Sprite2D" parent="ParallaxBackground/clouds"]
+position = Vector2(564, 118)
+texture = ExtResource("3_xtj25")
 
 [node name="cloud3" type="Sprite2D" parent="ParallaxBackground/clouds"]
-position = Vector2(196, 105)
-scale = Vector2(0.600001, 41.24)
-texture = SubResource("GradientTexture1D_ej3n1")
+position = Vector2(1020, 87)
+texture = ExtResource("4_3w75x")
 
 [node name="terrainfar" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 1)
@@ -83,22 +78,27 @@ texture = ExtResource("2_qammr")
 [node name="terrainnear" type="ParallaxLayer" parent="ParallaxBackground"]
 position = Vector2(-3, -7)
 motion_scale = Vector2(0.5, 1)
-motion_mirroring = Vector2(1024, 0)
+motion_mirroring = Vector2(2048, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/terrainnear"]
 position = Vector2(979, 424)
 texture = ExtResource("3_4dhoq")
 
-[node name="tree4" type="Sprite2D" parent="ParallaxBackground/terrainnear"]
-position = Vector2(525, 414)
+[node name="terrainneartrees" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-3, -7)
+motion_scale = Vector2(0.5, 1)
+motion_mirroring = Vector2(2048, 0)
+
+[node name="tree4" type="Sprite2D" parent="ParallaxBackground/terrainneartrees"]
+position = Vector2(582, 444)
 texture = ExtResource("2_6orsa")
 
-[node name="tree5" type="Sprite2D" parent="ParallaxBackground/terrainnear"]
+[node name="tree5" type="Sprite2D" parent="ParallaxBackground/terrainneartrees"]
 position = Vector2(1275, 407)
 texture = ExtResource("2_6orsa")
 
-[node name="tree6" type="Sprite2D" parent="ParallaxBackground/terrainnear"]
-position = Vector2(1996, 495)
+[node name="tree6" type="Sprite2D" parent="ParallaxBackground/terrainneartrees"]
+position = Vector2(2002, 523)
 texture = ExtResource("2_6orsa")
 
 [node name="close" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -125,7 +125,8 @@ texture = ExtResource("2_6orsa")
 position = Vector2(-1.3291, 11.3658)
 scale = Vector2(0.0541231, 0.078574)
 script = ExtResource("3_cyjey")
-shakeIntensity = 0.1
+shakeFrequency = 4.0
+shakeReturnTime = 0.5
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="trainwindow"]
 position = Vector2(93.1121, -93.667)

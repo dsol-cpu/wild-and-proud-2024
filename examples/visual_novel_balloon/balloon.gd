@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
 @onready var example_particles: CPUParticles2D = $Balloon/RainbowSparkles
+@onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -176,6 +177,10 @@ func remove_portrait(character: String) -> void:
 	portraits.erase(character)
 	portrait.queue_free()
 
+func play_sound(sound_effect: String) -> void:
+	var soundres = load("res://assets/sounds/sfx/%s.wav" % sound_effect)
+	audio_sfx.stream = soundres
+	audio_sfx.play()
 
 ### Helpers
 
