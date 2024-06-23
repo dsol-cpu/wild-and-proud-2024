@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
-@onready var example_particles: CPUParticles2D = $Balloon/RainbowSparkles
+@onready var example_particles: CPUParticles2D = $Balloon/RainParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 
 ## The dialogue resource
@@ -134,7 +134,8 @@ func add_portrait(character: String, slot: int = 0) -> void:
 	if slot_marker.get_child_count() > 0: return
 
 	# Instantiate the character
-	var portrait = load("res://examples/visual_novel_balloon/portraits/%s.tscn" % character).instantiate()
+	#var portrait = load("res://examples/visual_novel_balloon/portraits/%s.tscn" % character).instantiate()
+	var portrait = load("res://assets/characters/%s.tscn" % character).instantiate()
 	slot_marker.add_child(portrait)
 
 	portraits[character] = portrait

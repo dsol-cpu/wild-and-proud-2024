@@ -125,8 +125,9 @@ texture = ExtResource("2_6orsa")
 position = Vector2(-1.3291, 11.3658)
 scale = Vector2(0.0541231, 0.078574)
 script = ExtResource("3_cyjey")
-shakeFrequency = 4.0
-shakeReturnTime = 0.5
+shakeFrequency = 0.5
+shakeFrequencyVariance = 0.0
+shakeIntensity = 0.1
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="trainwindow"]
 position = Vector2(93.1121, -93.667)
