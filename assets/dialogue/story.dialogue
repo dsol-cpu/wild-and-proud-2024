@@ -1,0 +1,52 @@
+#Tools:
+
+#set_portrait
+#do set_portrait("misty", "happy")
+#can use a character name, and an expression
+#expression one of "neutral", "happy", "sad", "surprised"
+
+#add_portrait
+#do add_portrait("misty", 0)
+#adding a portrait with a character, an a slot.
+#Use slot 0 or 4
+
+#play_sound
+#do play_sound("pleasing-bell.wav")
+#Plays this sound inside the assets/sounds/sfx folder
+
+#start_particles
+#do start_particles()
+# Starts raincloud particles
+
+#stop_particles
+#do stop_particles()
+# Stops raincloud particles
+
+# setup_response_timer
+# do setup_response_timer()
+# If you do this before a response selection, it will
+# give the player 5 seconds to respond. If they don't respond
+# in time, a random option will be selected. 
+
+~ introduction
+Misty: <Introduction Here>
+=> midpoint
+
+~ midpoint
+
+Misty: [[Hi|Hello|Howdy]], this is some dialogue.
+Misty: Here are some choices.
+- Go to climax
+	Misty: Time for the climax
+	=> climax
+- Second one
+	Misty: You picked the second one.
+Misty: For more information see the online documentation.
+
+~ climax
+
+Misty: It's the end of the story! Thanks for playing. 
+Pepper: It's time for the credits and we don't have a credits UI, so we'll just do this in the dialogue.
+
+
+=> END

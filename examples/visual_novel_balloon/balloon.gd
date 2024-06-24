@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
-@onready var example_particles: CPUParticles2D = $Balloon/RainParticles
+@onready var example_particles: CPUParticles2D = $RainParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 
 ## The dialogue resource
@@ -148,7 +148,10 @@ func add_portrait(character: String, slot: int = 0) -> void:
 
 func call_portrait(character: String, method: String) -> void:
 	portraits[character].call(method)
-	
+
+func set_portrait(character: String, portrait_title: String) -> void:
+	portraits[character].call("set_portrait", portrait_title)
+
 func setupCocoPats() -> void:
 	portraits["coco"].setup_signal_link(self)
 
@@ -194,7 +197,8 @@ func stop_timer() -> void:
 	
 func _finish_response_timer():
 	#Like...remove all choiced but last in the responses area. 
-	_pick_first_choice()
+	#_pick_first_choice()
+	_pick_random_choice()
 	print("TimerFinished")
 
 func _pick_first_choice():

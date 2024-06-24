@@ -9,6 +9,3 @@ func _ready():
 func _transition_animation_go():
 	self.play()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
