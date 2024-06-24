@@ -7,6 +7,7 @@ extends CanvasLayer
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
 @onready var example_particles: CPUParticles2D = $RainParticles
+@onready var heart_particles: CPUParticles2D = $HeartParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 @onready var audio_ambiance: AudioStreamPlayer = $ambiance
 @onready var parallax_ref: ParallaxBackground = $ParallaxTest/ParallaxBackground
@@ -159,6 +160,12 @@ func setupCocoPats() -> void:
 
 func start_particles() -> void:
 	example_particles.emitting = true
+	
+func start_particles_heart() -> void:
+	heart_particles.emitting = true
+	
+func stop_particles_heart() -> void:
+	heart_particles.emitting = false
 
 func stop_particles() -> void:
 	example_particles.emitting = false

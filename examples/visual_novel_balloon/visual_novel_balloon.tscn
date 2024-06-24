@@ -1,16 +1,17 @@
-[gd_scene load_steps=13 format=3 uid="uid://cxae2nu1rsyeo"]
+[gd_scene load_steps=14 format=3 uid="uid://cxae2nu1rsyeo"]
 
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/balloon.gd" id="1_5w8hw"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="1_ebrfe"]
 [ext_resource type="PackedScene" uid="uid://buul6y6c1g8qi" path="res://assets/scenes/Sandbox/NH/ParallaxTest.tscn" id="2_3eav1"]
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/Timer.gd" id="3_kjfv6"]
+[ext_resource type="Texture2D" uid="uid://dhy1lwskpdy4n" path="res://assets/art/heart.png" id="4_5u4fn"]
 [ext_resource type="Texture2D" uid="uid://b1w2q1iwkmcje" path="res://assets/art/backgrounds/parallaxAssets/cloud2.png" id="4_t0ci4"]
 [ext_resource type="Texture2D" uid="uid://cfhvmhhtitcal" path="res://assets/art/raindrop.png" id="4_x1v14"]
 [ext_resource type="AudioStream" uid="uid://b1d7qvviml842" path="res://assets/sounds/music/background/swaying03.wav" id="4_ykr5b"]
 [ext_resource type="AudioStream" uid="uid://bk584x3ftq866" path="res://assets/sounds/ambiance/197124__avakas__empty-train-moving-slowly-recorded-inside-passenger-car.wav" id="6_ixxjm"]
 
 [sub_resource type="Gradient" id="Gradient_nluiu"]
-colors = PackedColorArray(0, 0.207843, 0.847059, 1, 0.227451, 1, 1, 1)
+colors = PackedColorArray(0.477525, 0.0127869, 0.133953, 1, 0.944451, 0.267592, 0.122976, 1)
 
 [sub_resource type="Gradient" id="Gradient_jmrjs"]
 offsets = PackedFloat32Array(0, 0.126667, 0.273333, 0.433333, 0.593333, 0.786667, 1)
@@ -94,6 +95,23 @@ spread = 0.0
 gravity = Vector2(0, 500)
 initial_velocity_min = 735.47
 initial_velocity_max = 1000.0
+scale_amount_max = 2.0
+color_initial_ramp = SubResource("Gradient_nluiu")
+
+[node name="HeartParticles" type="CPUParticles2D" parent="."]
+position = Vector2(941, 265)
+scale = Vector2(-256.656, 1869.16)
+emitting = false
+amount = 5
+speed_scale = 0.25
+texture = ExtResource("4_5u4fn")
+direction = Vector2(0, 0)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = 3.0
+orbit_velocity_max = 3.0
 scale_amount_max = 2.0
 color_initial_ramp = SubResource("Gradient_nluiu")
 
