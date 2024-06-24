@@ -57,6 +57,7 @@ do set_portrait("pepper", "happy")
 
 ~ core
 - It’ll be fun! 
+	do start_rain_particles()
 	set Relationship.rel_value += 1
 	do set_portrait("misty", "happy")
 	Pepper: Awesome, when are you getting here?
@@ -107,10 +108,12 @@ do set_portrait("pepper", "happy")
 		Pepper: Can't wait to see you then!
 		do set_portrait("pepper", "happy")
 - I want you
-	do set_portrait("misty", "sad")
-	set Relationship.rel_value -= 1
 	Pepper: what?? girly what. like you’re cute but that’s way too far
+	do set_portrait("misty", "sad")
+	do start_particles()
+	set Relationship.rel_value -= 1
 	do set_portrait("pepper", "surprised")
+	do stop_particles()
 #- *Silence*
 #	do set_potrait("misty", "sad")
 #	Pepper: Umm, you there?
@@ -177,6 +180,7 @@ if (Relationship.rel_value > 0):
 	do set_portrait("pepper", "surprised")
 	Misty: Oh no, I’ve had these feelings for you for a long while. I was just kind of afraid to admit it and figured I’d wait until now.
 	do set_portrait("misty", "surprised")
+	do start_rainbow_particles()
 	Pepper: oh my gosh! I like you too 
 	Misty: Really?! I’m so glad! We can definitely plan more dates if you want to.
 	
@@ -184,6 +188,7 @@ elif (Relationship.rel_value < 0):
 	Pepper:  I’m sorry, but I don’t. I thought you were a friend, but after all the cringe stuff you said tonight, I just don’t think we can really be.
 	do set_portrait("pepper", "sad")
 	Misty: I didn’t mean to. I just have a hard time properly socializing, and while I wouldn’t mean to do anything to make you uncomfortable, I just struggle to talk face to face with people.
+	do start_particles()
 	do set_portrait("misty", "sad")
 	Pepper: I'm sorry, but I have to enforce my personal boundaries somewhere.
 

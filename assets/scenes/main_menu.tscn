@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://y2dqild55d3c"]
+[gd_scene load_steps=7 format=3 uid="uid://y2dqild55d3c"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_8upgy"]
 [ext_resource type="FontFile" uid="uid://dpw5hcmnmqs1w" path="res://assets/fonts/LibreBaskerville-Regular.ttf" id="1_jqrf7"]
 [ext_resource type="FontFile" uid="uid://cv0jwxgytulm2" path="res://assets/fonts/DMSerifText-Regular.ttf" id="2_ci20q"]
 [ext_resource type="Script" path="res://scripts/play_btn.gd" id="3_6cgjd"]
 [ext_resource type="Script" path="res://scripts/quit_btn.gd" id="4_uhfg5"]
+[ext_resource type="Texture2D" uid="uid://cis1rm6370id" path="res://icon.svg" id="6_dukv5"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -54,3 +55,8 @@ text = "QUIT"
 flat = true
 alignment = 0
 script = ExtResource("4_uhfg5")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(281, 407)
+scale = Vector2(0.0625, 0.0612981)
+texture = ExtResource("6_dukv5")

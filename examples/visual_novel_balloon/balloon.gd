@@ -1,12 +1,13 @@
 extends CanvasLayer
 
+@export var rain_particles : CPUParticles2D
+@export var rainbow_particles : CPUParticles2D
 
 @onready var background: TextureRect = $Background
 @onready var balloon: Control = $Balloon
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
-@onready var example_particles: CPUParticles2D = $RainParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 @onready var audio_ambiance: AudioStreamPlayer = $ambiance
 @onready var parallax_ref: ParallaxBackground = $ParallaxTest/ParallaxBackground
@@ -157,11 +158,18 @@ func set_portrait(character: String, portrait_title: String) -> void:
 func setupCocoPats() -> void:
 	portraits["coco"].setup_signal_link(self)
 
-func start_particles() -> void:
-	example_particles.emitting = true
+func start_rain_particles() -> void:
+	rain_particles.emitting = true
 
-func stop_particles() -> void:
-	example_particles.emitting = false
+func stop_rain_particles() -> void:
+	rain_particles.emitting = false
+
+func start_rainbow_particles() -> void:
+	rainbow_particles.emitting = true
+
+func stop_rainbow_particles() -> void:
+	rainbow_particles.emitting = false
+
 	
 func pause_for_minigame() -> void:
 	print("Hi do something")
