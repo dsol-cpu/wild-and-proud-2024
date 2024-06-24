@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=3 uid="uid://6oj7f3kld3qe"]
+
+[ext_resource type="Texture2D" uid="uid://bg7dngh2kog5f" path="res://examples/visual_novel_balloon/portraits/coco.png" id="1_26yaq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m40v"]
+
+[node name="TestDynamicSkel" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Node2D"]
+texture = ExtResource("1_26yaq")
+polygon = PackedVector2Array(50.3817, 89.313, 81.6794, 3.05343, 155.725, 61.0687, 211.45, 74.0458, 298.473, 21.374, 325.191, 82.4427, 299.237, 158.015, 296.947, 225.191, 374.809, 322.137, 400, 422.137, 310.687, 459.542, 129.771, 461.069, 57.2519, 412.977, 83.9695, 308.397, 89.313, 294.656, 20.6107, 238.931, 9.16031, 145.038)
+uv = PackedVector2Array(50.3817, 89.313, 81.6794, 3.05343, 155.725, 61.0687, 211.45, 74.0458, 298.473, 21.374, 325.191, 82.4427, 299.237, 158.015, 296.947, 225.191, 374.809, 322.137, 400, 422.137, 310.687, 459.542, 129.771, 461.069, 57.2519, 412.977, 83.9695, 308.397, 89.313, 294.656, 20.6107, 238.931, 9.16031, 145.038)
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+position = Vector2(221, 418)
+
+[node name="body" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/body"]
+position = Vector2(-51, -162)
+rest = Transform2D(1, 0, 0, 1, -51, -162)
+auto_calculate_length_and_angle = false
+length = 156.412
+bone_angle = -102.443
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(217, 395.03)
+gravity_scale = 0.0
+freeze = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+scale = Vector2(9.42, 9.42)
+shape = SubResource("CircleShape2D_8m40v")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D"]
+position = Vector2(1, -0.0299988)
+node_a = NodePath("..")
+node_b = NodePath("../../RigidBody2D2")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D"]
+z_index = 70
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 23.0
+offset_bottom = 23.0
+color = Color(1, 0, 0, 1)
+
+[node name="RigidBody2D2" type="RigidBody2D" parent="."]
+position = Vector2(158, 190)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D2"]
+scale = Vector2(10.765, 10.765)
+shape = SubResource("CircleShape2D_8m40v")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="RigidBody2D2"]
+node_a = NodePath("..")
+node_b = NodePath("../../RigidBody2D")
+
+[node name="ColorRect" type="ColorRect" parent="RigidBody2D2"]
+z_index = 70
+offset_left = -17.0
+offset_top = -17.0
+offset_right = 23.0
+offset_bottom = 23.0
+color = Color(1, 0, 0, 1)

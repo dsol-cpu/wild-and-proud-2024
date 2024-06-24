@@ -1,31 +1,51 @@
 ~ start
-
-do set_background("mountain-view")
+#do stop_timer()
+#do set_background("mountain-view")
+#do set_custom_background("background01")
 do wait(0.5)
-do add_portrait("nathan", 0)
-Nathan: Hi, I'm [color=red]not[/color] [b]Nathan[/b] and this is [i]Coco[/i]. [ID:tf885328afb]
-do add_portrait("coco", 4)
-do call_portrait("coco", "meow")
-do setupCocoPats()
+do add_portrait("misty", 0)
+set Relationship.rel_value = 0
+Misty: Hi, I'm [color=red]not[/color] [b]Nathan[/b] and this is [i]Coco[/i]. [ID:tf885328afb]
+do add_portrait("pepper", 4)
+#do setupCocoPats()
 do start_particles()
-Coco: [wave amp=50.0 freq=5.0 connected=1]Meow.[/wave] [ID:t4c11347656]
-do pause_for_minigame()
-Nathan: [rainbow freq=1.0 sat=0.8 val=0.8]Please pet the cat.[/rainbow] [ID:tba678dd331]
+do play_sound("pleasing-bell.wav")
+do set_portrait("misty", "surprised")
+do call_portrait("pepper", "bounce")
+Pepper: [wave amp=50.0 freq=5.0 connected=1]Meow.[/wave] [ID:t4c11347656]
+#do pause_for_minigame()
+do set_portrait("misty", "sad")
+Misty: Your relationship before is {{Relationship.rel_value}}.
+set Relationship.rel_value = Relationship.rel_value + 1
+do call_portrait("misty", "shake")
+do set_portrait("misty", "happy")
+Misty: Your relationship after is {{Relationship.rel_value}}.
+Misty: [rainbow freq=1.0 sat=0.8 val=0.8]Please pet the cat.[/rainbow] [ID:tba678dd331]
 do stop_particles()
-Nathan: Thank you for patting the cat.
-Nathan: Back to the choices.
+
+Misty: Thank you for patting the cat.
+Misty: Back to the choices.
+do setup_response_timer()
+- Do nothing
+	do stop_timer()
+	Misty: Wow you did nothing.
+	Misty: Coco didn't like that.
+	#do call_portrait("coco", "meow")
+	Pepper: Meow.
 - First one [ID:tec2831274f]
-	Nathan: You picked the first one. [ID:ted9b57f70f]
+	do stop_timer()
+	Misty: You picked the first one. [ID:ted9b57f70f]
 	#do call_portrait("coco", "bigmeow")
 - Second one [ID:te9670331c2]
-	Nathan: You picked the second one. [ID:t14bc171a9f]
+	do stop_timer()
+	Misty: You picked the second one. [ID:t14bc171a9f]
 - Start again [ID:ta04a1307f6] => start
 - End the conversation [ID:t3211e3adf8] => END
-Nathan: I hope this example is helpful. [ID:t643e01443b]
-do remove_portrait("nathan")
-do call_portrait("coco", "meow")
-Coco: Meow. [ID:tb75d1c7a40]
-do remove_portrait("coco")
+Misty: I hope this example is helpful. [ID:t643e01443b]
+do remove_portrait("misty")
+#do call_portrait("coco", "meow")
+Pepper: Meow. [ID:tb75d1c7a40]
+do remove_portrait("pepper")
 do wait(0.5)
 
 => END

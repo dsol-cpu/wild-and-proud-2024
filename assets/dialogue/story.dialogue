@@ -1,0 +1,96 @@
+#Tools:
+
+#set_portrait
+#do set_portrait("misty", "happy")
+#can use a character name, and an expression
+#expression one of "neutral", "happy", "sad", "surprised"
+
+#add_portrait
+#do add_portrait("misty", 0)
+#do add_portrait("pepper", 4)
+#adding a portrait with a character, an a slot.
+#Use slot 0 or 4
+
+#remove_portrait
+#do remove_portrait("misty")
+#do remove_portrait("pepper")
+#Can be used to remove portraits
+
+#play_sound
+#do play_sound("pleasing-bell.wav")
+#Plays this sound inside the assets/sounds/sfx folder
+
+#start_particles
+#do start_particles()
+# Starts raincloud particles
+
+#stop_particles
+#do stop_particles()
+# Stops raincloud particles
+
+# setup_response_timer
+# do setup_response_timer()
+# If you do this before a response selection, it will
+# give the player 5 seconds to respond. If they don't respond
+# in time, a random option will be selected. 
+
+# set Relationship.rel_value = 0
+# You can set the relationship value to something. 
+
+
+# stop_train
+# do stop_train()
+# this will stop the train, turning off ambiance, parallax, and train window shake
+
+
+~ start
+=> introduction
+
+~ introduction
+do add_portrait("misty", 0)
+do add_portrait("pepper", 4)
+Misty: <Introduction Here>
+=> core
+
+~ core
+Misty: [[Hi|Hello|Howdy]], this is some dialogue.
+Misty: Here are some choices.
+- Go to climax but positive
+	Misty: Time for the climax
+	set Relationship.rel_value = 1
+- Go to climax neutral
+	Misty: You picked the second one.
+	set Relationship.rel_value = 0
+- Go to climax negative
+	Misty: Negative ending.
+	set Relationship.rel_value = -1
+Misty: Next is the climax
+=> climax
+
+
+~ climax
+do stop_train()
+Misty: This is the climax
+if (Relationship.rel_value > 0):
+	Pepper: <Positive Climax>
+elif (Relationship.rel_value < 0):
+	Pepper: <Negative Climax>
+elif (Relationship.rel_value == 0):
+	Pepper: <Neutral Climax>
+=> ending
+
+~ ending
+Narrator: It's the end of the story! Thanks for playing. 
+if (Relationship.rel_value > 0):
+	Pepper: <Positive Ending>
+elif (Relationship.rel_value < 0):
+	Pepper: <Negative Ending>
+elif (Relationship.rel_value == 0):
+	Pepper: <Neutral Ending>
+=> credits
+
+~ credits
+Narrator: It's time for the credits and we don't have a credits UI, so we'll just do this in the dialogue.
+
+
+=> END

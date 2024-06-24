@@ -1,7 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxae2nu1rsyeo"]
+[gd_scene load_steps=13 format=3 uid="uid://cxae2nu1rsyeo"]
 
 [ext_resource type="Script" path="res://examples/visual_novel_balloon/balloon.gd" id="1_5w8hw"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="1_ebrfe"]
+[ext_resource type="PackedScene" uid="uid://buul6y6c1g8qi" path="res://assets/scenes/Sandbox/NH/ParallaxTest.tscn" id="2_3eav1"]
+[ext_resource type="Script" path="res://examples/visual_novel_balloon/Timer.gd" id="3_kjfv6"]
+[ext_resource type="Texture2D" uid="uid://b1w2q1iwkmcje" path="res://assets/art/backgrounds/parallaxAssets/cloud2.png" id="4_t0ci4"]
+[ext_resource type="Texture2D" uid="uid://cfhvmhhtitcal" path="res://assets/art/raindrop.png" id="4_x1v14"]
+[ext_resource type="AudioStream" uid="uid://b1d7qvviml842" path="res://assets/sounds/music/background/swaying03.wav" id="4_ykr5b"]
+[ext_resource type="AudioStream" uid="uid://bk584x3ftq866" path="res://assets/sounds/ambiance/197124__avakas__empty-train-moving-slowly-recorded-inside-passenger-car.wav" id="6_ixxjm"]
+
+[sub_resource type="Gradient" id="Gradient_nluiu"]
+colors = PackedColorArray(0, 0.207843, 0.847059, 1, 0.227451, 1, 1, 1)
 
 [sub_resource type="Gradient" id="Gradient_jmrjs"]
 offsets = PackedFloat32Array(0, 0.126667, 0.273333, 0.433333, 0.593333, 0.786667, 1)
@@ -42,29 +51,51 @@ corner_radius_bottom_left = 5
 [node name="VisualNovelBalloon" type="CanvasLayer"]
 script = ExtResource("1_5w8hw")
 
+[node name="ParallaxTest" parent="." instance=ExtResource("2_3eav1")]
+
 [node name="Background" type="TextureRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = -195.55
 grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 3
 stretch_mode = 6
 
 [node name="Slot0" type="Marker2D" parent="."]
-position = Vector2(181, 448)
+position = Vector2(308, 700)
 
 [node name="Slot1" type="Marker2D" parent="."]
-position = Vector2(358, 448)
+position = Vector2(364, 700)
 
 [node name="Slot2" type="Marker2D" parent="."]
-position = Vector2(553, 448)
+position = Vector2(559, 700)
 
 [node name="Slot3" type="Marker2D" parent="."]
-position = Vector2(768, 448)
+position = Vector2(774, 700)
 
 [node name="Slot4" type="Marker2D" parent="."]
-position = Vector2(947, 448)
+position = Vector2(926, 700)
+
+[node name="RainParticles" type="CPUParticles2D" parent="."]
+position = Vector2(302, 113)
+emitting = false
+amount = 100
+lifetime = 3.0
+speed_scale = 1.5
+randomness = 0.75
+texture = ExtResource("4_x1v14")
+emission_shape = 3
+emission_rect_extents = Vector2(300, 1)
+direction = Vector2(0, 90)
+spread = 0.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 735.47
+initial_velocity_max = 1000.0
+scale_amount_max = 2.0
+color_initial_ramp = SubResource("Gradient_nluiu")
 
 [node name="Balloon" type="Control" parent="."]
 custom_minimum_size = Vector2(0, 200)
@@ -73,6 +104,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -194.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -121,6 +154,11 @@ scale_amount_min = 5.0
 scale_amount_max = 5.0
 color_initial_ramp = SubResource("Gradient_jmrjs")
 
+[node name="Sprite2D" type="Sprite2D" parent="Balloon"]
+position = Vector2(294, -617)
+scale = Vector2(3.08, 2.92)
+texture = ExtResource("4_t0ci4")
+
 [node name="Responses" type="VBoxContainer" parent="."]
 anchors_preset = -1
 anchor_left = 0.645
@@ -134,10 +172,10 @@ offset_bottom = -0.144043
 grow_vertical = 0
 
 [node name="ResponseTemplate" type="RichTextLabel" parent="."]
-offset_left = 48.0
-offset_top = 694.0
-offset_right = 399.0
-offset_bottom = 740.0
+offset_left = 57.0
+offset_top = 949.0
+offset_right = 408.0
+offset_bottom = 995.0
 mouse_default_cursor_shape = 2
 theme_override_styles/focus = SubResource("StyleBoxFlat_sr5y7")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ma11q")
@@ -146,5 +184,35 @@ fit_content = true
 scroll_active = false
 shortcut_keys_enabled = false
 
+[node name="TimerContain" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 454.0
+offset_top = 27.0
+offset_right = 654.0
+offset_bottom = 67.0
+
+[node name="Timer" type="ColorRect" parent="TimerContain"]
+layout_mode = 2
+offset_right = 200.0
+offset_bottom = 40.0
+script = ExtResource("3_kjfv6")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_ykr5b")
+autoplay = true
+
+[node name="ambiance" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_ixxjm")
+volume_db = -8.0
+autoplay = true
+
+[node name="AudioSFX" type="AudioStreamPlayer" parent="."]
+
 [connection signal="finish_pats" from="." to="." method="_on_finish_pats"]
+[connection signal="timer_start" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_start"]
+[connection signal="timer_stop" from="." to="TimerContain/Timer" method="_on_visual_novel_balloon_timer_stop"]
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
+[connection signal="gui_input" from="ResponseTemplate" to="." method="_accept_gui_input"]
+[connection signal="mouse_entered" from="ResponseTemplate" to="." method="_play_on_hover_sound"]
+[connection signal="timerFinished" from="TimerContain/Timer" to="." method="_finish_response_timer"]

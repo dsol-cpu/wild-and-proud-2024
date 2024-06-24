@@ -6,7 +6,10 @@ extends CanvasLayer
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
-@onready var example_particles: CPUParticles2D = $Balloon/RainbowSparkles
+@onready var example_particles: CPUParticles2D = $RainParticles
+@onready var audio_sfx: AudioStreamPlayer = $AudioSFX
+@onready var audio_ambiance: AudioStreamPlayer = $ambiance
+@onready var parallax_ref: ParallaxBackground = $ParallaxTest/ParallaxBackground
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -25,6 +28,8 @@ var portraits: Dictionary = {}
 
 #I have no idea what I'm doing
 signal finish_pats
+signal timer_start
+signal timer_stop
 
 ## The current line
 var dialogue_line: DialogueLine:
@@ -122,6 +127,8 @@ func next(next_id: String) -> void:
 func set_background(background_name: String) -> void:
 	background.texture = load("res://examples/visual_novel_balloon/backgrounds/%s.jpg" % background_name)
 
+func set_custom_background(background_name: String) -> void:
+	background.texture = load("res://assets/art/backgrounds/%s.png" % background_name)
 
 func add_portrait(character: String, slot: int = 0) -> void:
 	var slot_marker: Marker2D = get_node("Slot%d" % slot)
@@ -129,7 +136,8 @@ func add_portrait(character: String, slot: int = 0) -> void:
 	if slot_marker.get_child_count() > 0: return
 
 	# Instantiate the character
-	var portrait = load("res://examples/visual_novel_balloon/portraits/%s.tscn" % character).instantiate()
+	#var portrait = load("res://examples/visual_novel_balloon/portraits/%s.tscn" % character).instantiate()
+	var portrait = load("res://assets/characters/%s.tscn" % character).instantiate()
 	slot_marker.add_child(portrait)
 
 	portraits[character] = portrait
@@ -142,7 +150,10 @@ func add_portrait(character: String, slot: int = 0) -> void:
 
 func call_portrait(character: String, method: String) -> void:
 	portraits[character].call(method)
-	
+
+func set_portrait(character: String, portrait_title: String) -> void:
+	portraits[character].call("set_portrait", portrait_title)
+
 func setupCocoPats() -> void:
 	portraits["coco"].setup_signal_link(self)
 
@@ -160,6 +171,11 @@ func unpause_from_minigame() -> void:
 	print("Back to stuff")
 	input_locked = false
 	next(dialogue_line.next_id)
+
+func stop_train() -> void:
+	audio_ambiance.stop()
+	parallax_ref.scroll_base_scale = Vector2(0, 0)
+	parallax_ref.call("train_stopped")
 	
 
 func remove_portrait(character: String) -> void:
@@ -172,9 +188,38 @@ func remove_portrait(character: String) -> void:
 	portraits.erase(character)
 	portrait.queue_free()
 
+func play_sound(sound_effect: String) -> void:
+	var soundres = load("res://assets/sounds/sfx/%s" % sound_effect)
+	audio_sfx.stream = soundres
+	audio_sfx.play()
 
 ### Helpers
 
+func setup_response_timer() -> void:
+	timer_start.emit()
+	print("TimerStarted")
+
+func stop_timer() -> void:
+	timer_stop.emit()
+	
+func _finish_response_timer():
+	#Like...remove all choiced but last in the responses area. 
+	#_pick_first_choice()
+	_pick_random_choice()
+	print("TimerFinished")
+
+func _pick_first_choice():
+	next(dialogue_line.responses[0].next_id)
+
+func _pick_random_choice():
+	var number_of_children = responses_menu.get_child_count()
+	var random_child = randi() % number_of_children
+	next(dialogue_line.responses[random_child].next_id)
+
+func _leave_only_first():
+	var number_of_children = responses_menu.get_child_count()
+	for n in (number_of_children - 1):
+		responses_menu.remove_child(responses_menu.get_child(1))
 
 # Set up keyboard movement and signals for the response menu
 func configure_menu() -> void:
@@ -233,15 +278,26 @@ func _on_response_mouse_entered(item: Control) -> void:
 
 	item.grab_focus()
 
+func _play_on_hover_sound() -> void:
+	print("trying to play sound")
+	var soundres = load("res://assets/sounds/sfx/pleasing-bell.wav")
+	audio_sfx.stream = soundres
+	audio_sfx.play()
+	
+func _accept_gui_input(event: InputEvent) -> void:
+	print("Got here through accept gui input,")
+	_play_on_hover_sound()
 
 func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	if "Disallowed" in item.name: return
+	
 
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		if input_locked: return
 		responses_menu.modulate.a = 0.0
+		_play_on_hover_sound()
 		next(dialogue_line.responses[item.get_index()].next_id)
 	elif event.is_action_pressed("ui_accept") and item in get_responses():
 		responses_menu.modulate.a = 0.0

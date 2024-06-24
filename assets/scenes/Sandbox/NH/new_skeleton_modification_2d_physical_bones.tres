@@ -1,0 +1,4 @@
+[gd_resource type="SkeletonModification2DPhysicalBones" format=3 uid="uid://ogfef63lfwdr"]
+
+[resource]
+fetch_bones = null
