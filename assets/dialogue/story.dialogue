@@ -22,7 +22,7 @@
 
 #start_particles
 #do start_particles()
-# Starts raincloud particles
+# Starts raincloud particles around Misty
 
 #stop_particles
 #do stop_particles()
@@ -90,7 +90,14 @@ elif (Relationship.rel_value == 0):
 => credits
 
 ~ credits
-Narrator: It's time for the credits and we don't have a credits UI, so we'll just do this in the dialogue.
+Narrator: CREDITS\nCoffee Toffee/Luna: Writing, 3D Modeling \nDavid Solinsky/Smeppu: Character Art, Programming \nEmily Vee: Writing\nNathan Hahn: Programming, 2D Art, Music
+Narrator: Thanks for playing!
+- Play Again
+	Narrator: Sorry, can't do that.
+	#do full_restart()
+- Quit
+	=> END
+
 
 
 => END
