@@ -177,6 +177,9 @@ func stop_train() -> void:
 	parallax_ref.scroll_base_scale = Vector2(0, 0)
 	parallax_ref.call("train_stopped")
 	
+func full_restart() -> void:
+	get_tree().reload_current_scene()
+	
 
 func remove_portrait(character: String) -> void:
 	var portrait = portraits[character]
