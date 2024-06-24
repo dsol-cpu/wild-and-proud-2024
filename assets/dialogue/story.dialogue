@@ -37,6 +37,12 @@
 # set Relationship.rel_value = 0
 # You can set the relationship value to something. 
 
+
+# stop_train
+# do stop_train()
+# this will stop the train, turning off ambiance, parallax, and train window shake
+
+
 ~ start
 => introduction
 
