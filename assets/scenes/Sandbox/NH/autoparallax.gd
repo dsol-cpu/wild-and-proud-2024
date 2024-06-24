@@ -11,3 +11,6 @@ func _ready():
 func _process(delta):
 	scroll_x -= 200 * delta
 	self.scroll_offset.x = scroll_x
+	
+func train_stopped():
+	get_parent().get_node("trainwindow").call("stop")

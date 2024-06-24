@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://examples/test_scenes/test_scene.gd" id="1_e0ngl"]
 [ext_resource type="PackedScene" uid="uid://cxae2nu1rsyeo" path="res://examples/visual_novel_balloon/visual_novel_balloon.tscn" id="2_k5f7p"]
-[ext_resource type="Resource" uid="uid://blrvfu0omnymj" path="res://examples/dialogue_for_visual_novel_nhtest.dialogue" id="3_j08xb"]
+[ext_resource type="Resource" uid="uid://ccfal7pqr6bsn" path="res://assets/dialogue/story.dialogue" id="3_tyt0u"]
 
 [node name="VisualNovelScene" type="Node2D"]
 script = ExtResource("1_e0ngl")
 Balloon = ExtResource("2_k5f7p")
 SmallBalloon = ExtResource("2_k5f7p")
-dialogue_resource = ExtResource("3_j08xb")
+dialogue_resource = ExtResource("3_tyt0u")

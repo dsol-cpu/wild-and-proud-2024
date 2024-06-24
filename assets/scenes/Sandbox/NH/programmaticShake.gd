@@ -21,6 +21,9 @@ var shakeFreqTimer = 0
 var shakeReturnTimer = 0
 var shaken: bool = false
 
+func stop():
+	shakeIntensity = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	default_x = position.x

@@ -8,6 +8,8 @@ extends CanvasLayer
 @onready var response_template: RichTextLabel = $ResponseTemplate
 @onready var example_particles: CPUParticles2D = $RainParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
+@onready var audio_ambiance: AudioStreamPlayer = $ambiance
+@onready var parallax_ref: ParallaxBackground = $ParallaxTest/ParallaxBackground
 
 ## The dialogue resource
 var resource: DialogueResource
@@ -169,6 +171,11 @@ func unpause_from_minigame() -> void:
 	print("Back to stuff")
 	input_locked = false
 	next(dialogue_line.next_id)
+
+func stop_train() -> void:
+	audio_ambiance.stop()
+	parallax_ref.scroll_base_scale = Vector2(0, 0)
+	parallax_ref.call("train_stopped")
 	
 
 func remove_portrait(character: String) -> void:
