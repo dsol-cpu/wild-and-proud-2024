@@ -13,8 +13,9 @@ func _ready():
 	timerValue = timerDefault
 	self.scale.x = 0
 
-func _start_timer():
-	timerValue = timerDefault
+func _start_timer(timer_val):
+	timerDefault = timer_val
+	timerValue = timer_val
 	timerActive = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,8 +29,8 @@ func _process(delta):
 			
 
 
-func _on_visual_novel_balloon_timer_start():
-	_start_timer()
+func _on_visual_novel_balloon_timer_start(timer_val):
+	_start_timer(timer_val)
 	# Replace with function body.
 
 

@@ -8,7 +8,7 @@ var game_scene : Node
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	game_scene = preload("res://assets/scenes/dialogue_window.tscn").instantiate()
+	game_scene = preload("res://examples/test_scenes/visual_novel_scene.tscn").instantiate()
 
 func start_game():
 	main.add_child(game_scene)

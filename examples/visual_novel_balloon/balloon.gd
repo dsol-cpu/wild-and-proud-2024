@@ -28,7 +28,7 @@ var portraits: Dictionary = {}
 
 #I have no idea what I'm doing
 signal finish_pats
-signal timer_start
+signal timer_start(timer_val)
 signal timer_stop
 
 ## The current line
@@ -198,8 +198,8 @@ func play_sound(sound_effect: String) -> void:
 
 ### Helpers
 
-func setup_response_timer() -> void:
-	timer_start.emit()
+func setup_response_timer(timer_val) -> void:
+	timer_start.emit(timer_val)
 	print("TimerStarted")
 
 func stop_timer() -> void:
@@ -294,14 +294,15 @@ func _accept_gui_input(event: InputEvent) -> void:
 func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	if "Disallowed" in item.name: return
 	
-
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		if input_locked: return
 		responses_menu.modulate.a = 0.0
 		_play_on_hover_sound()
+		stop_timer()
 		next(dialogue_line.responses[item.get_index()].next_id)
+		
 	elif event.is_action_pressed("ui_accept") and item in get_responses():
 		responses_menu.modulate.a = 0.0
 		next(dialogue_line.responses[item.get_index()].next_id)
