@@ -1,13 +1,13 @@
 extends CanvasLayer
 
+@export var rain_particles : CPUParticles2D
+@export var rainbow_particles : CPUParticles2D
 
 @onready var background: TextureRect = $Background
 @onready var balloon: Control = $Balloon
 @onready var dialogue_label: DialogueLabel = $Balloon/Margin/DialogueLabel
 @onready var responses_menu: VBoxContainer = $Responses
 @onready var response_template: RichTextLabel = $ResponseTemplate
-@onready var example_particles: CPUParticles2D = $RainParticles
-@onready var heart_particles: CPUParticles2D = $HeartParticles
 @onready var audio_sfx: AudioStreamPlayer = $AudioSFX
 @onready var audio_ambiance: AudioStreamPlayer = $ambiance
 @onready var parallax_ref: ParallaxBackground = $ParallaxTest/ParallaxBackground
@@ -29,7 +29,7 @@ var portraits: Dictionary = {}
 
 #I have no idea what I'm doing
 signal finish_pats
-signal timer_start
+signal timer_start(timer_val)
 signal timer_stop
 
 ## The current line
@@ -158,17 +158,18 @@ func set_portrait(character: String, portrait_title: String) -> void:
 func setupCocoPats() -> void:
 	portraits["coco"].setup_signal_link(self)
 
-func start_particles() -> void:
-	example_particles.emitting = true
-	
-func start_particles_heart() -> void:
-	heart_particles.emitting = true
-	
-func stop_particles_heart() -> void:
-	heart_particles.emitting = false
+func start_rain_particles() -> void:
+	rain_particles.emitting = true
 
-func stop_particles() -> void:
-	example_particles.emitting = false
+func stop_rain_particles() -> void:
+	rain_particles.emitting = false
+
+func start_rainbow_particles() -> void:
+	rainbow_particles.emitting = true
+
+func stop_rainbow_particles() -> void:
+	rainbow_particles.emitting = false
+
 	
 func pause_for_minigame() -> void:
 	print("Hi do something")
@@ -205,8 +206,8 @@ func play_sound(sound_effect: String) -> void:
 
 ### Helpers
 
-func setup_response_timer() -> void:
-	timer_start.emit()
+func setup_response_timer(timer_val) -> void:
+	timer_start.emit(timer_val)
 	print("TimerStarted")
 
 func stop_timer() -> void:
@@ -301,14 +302,15 @@ func _accept_gui_input(event: InputEvent) -> void:
 func _on_response_gui_input(event: InputEvent, item: Control) -> void:
 	if "Disallowed" in item.name: return
 	
-
 	get_viewport().set_input_as_handled()
 
 	if event is InputEventMouseButton and event.is_pressed() and event.button_index == 1:
 		if input_locked: return
 		responses_menu.modulate.a = 0.0
 		_play_on_hover_sound()
+		stop_timer()
 		next(dialogue_line.responses[item.get_index()].next_id)
+		
 	elif event.is_action_pressed("ui_accept") and item in get_responses():
 		responses_menu.modulate.a = 0.0
 		next(dialogue_line.responses[item.get_index()].next_id)

@@ -48,53 +48,178 @@
 
 ~ introduction
 do add_portrait("misty", 0)
+Misty: Okay Misty, we’re on the train, we’re going to see Pepper, things will be okay.
+
 do add_portrait("pepper", 4)
-Misty: <Introduction Here>
+Pepper: I'm happy that you're coming to watch the show with me :3c
+do set_portrait("pepper", "happy")
 => core
 
 ~ core
-Misty: [[Hi|Hello|Howdy]], this is some dialogue.
-Misty: Here are some choices.
-- Go to climax but positive
-	Misty: Time for the climax
-	set Relationship.rel_value = 1
-- Go to climax neutral
-	Misty: You picked the second one.
-	set Relationship.rel_value = 0
-- Go to climax negative
-	Misty: Negative ending.
-	set Relationship.rel_value = -1
-Misty: Next is the climax
+- It’ll be fun! 
+	do start_rain_particles()
+	set Relationship.rel_value += 1
+	do set_portrait("misty", "happy")
+	Pepper: Awesome, when are you getting here?
+	do set_portrait("pepper", "neutral")
+	- (Lie) 1 hour  (will impact later on)
+		set Relationship.rel_value += 1
+		do set_portrait("misty", "neutral")
+		Pepper: omg that’s so soon I can’t wait to see you
+		do set_portrait("pepper", "happy")
+		- I can't wait to see you
+		- You too!
+			do set_potrait("misty", "happy")
+		- Yeah.
+			do set_portrait("misty", "neutral")
+	- (Lie) Idk
+		set Relationship.rel_value -= 1
+		do set_portrait("misty", "sad")
+		Pepper: oh okay
+		do set_portrait("pepper", "neutral")
+	- X number of hours
+		set Relationship.rel_value += 1
+		do set_portrait("misty", "neutral")
+		Pepper: Can't wait to see you then!
+		do set_portrait("pepper", "happy")
+		- I can’t wait to see you too!
+			do set_portrait("misty", "happy")
+		- You too! 
+			do set_portrait("misty", "happy")
+		- Yeah.
+			do set_portrait("misty", "neutral")
+- I can’t wait
+	set Relationship.rel_value += 1
+	do set_portrait("misty", "neutral")
+	Pepper: Great, when are you getting here?
+	do set_portrait("pepper", "happy")
+	- (Lie) 1 hour   (will impact later on)
+		set Relationship.rel_value += 1
+		do set_portrait("misty", "neutral")
+		Pepper: OMG that's so soon!! I can't wait to see you!
+		do set_portrait("pepper", "happy")
+	- (Lie) idk
+		do set_portrait("pepper", "neutral")
+		Pepper: Oh okay.
+		set Relationship.rel_value -= 1
+	- X number of hours 
+		set Relationship.rel_value += 1
+		do set_portrait("misty", "neutral")
+		Pepper: Can't wait to see you then!
+		do set_portrait("pepper", "happy")
+- I want you
+	Pepper: what?? girly what. like you’re cute but that’s way too far
+	do set_portrait("misty", "sad")
+	do start_particles()
+	set Relationship.rel_value -= 1
+	do set_portrait("pepper", "surprised")
+	do stop_particles()
+#- *Silence*
+#	do set_potrait("misty", "sad")
+#	Pepper: Umm, you there?
+#	do set_portrait("misty", "surprised")
+#	Pepper: Ummmm? Okay?
+#	do set_portrait("pepper", "neutral")
+=> core2
+
+
+~ core2
+Pepper: Did you hear about the new fanfic that just dropped about Applejerry? It was a ship between Applejerry and Granny Apple and I don’t know how I feel about that.
+do set_portrait("pepper", "surprised")
+
+- I read that a week ago and I loved it.  The author is lowkey slept on tbh.
+	do set_portrait("misty", "surprised")
+	Pepper: Huh, yeah the writing was good, it's just that I found it low-key problematic
+	do set_portrait("pepper", "neutral")
+	- That’s fair, but people should be able to write what they want
+		do set_portrait("misty", "neutral")
+		Pepper: True
+	- I also did, but like that author is explicit about their viewpoints being different than the story, which is good
+		do set_portrait("misty", "happy")
+		Pepper: Yeah, that's nice :)
+	- Incest is Wincest! Yes!
+		do set_portrait("misty", "happy")
+		Pepper: HAHA wtf's wrong with you?
+		do set_portrait("pepper", "happy")
+		- It was a joke, okay?
+			do set_portrait("pepper", "neutral")
+			Pepper: Okay.
+		- lots
+			do set_portrait("pepper", "sad")
+			Pepper: Oh no
+		- everything
+			do set_portrait("pepper", "sad")
+			Pepper: You should be nicer to yourself
+	- Oh yeah, I think I heard about it?  What’s it about?
+		do set_portrait("pepper", "neutral")
+		Pepper: They go on a picnic together after blowing up zombies!
+		- wait what?? that’s so cool!
+			do set_portrait("misty", "surprised")
+		- I always hated zombies
+			do set_portrait("misty", "sad")
+	- AYO3 has so many, I just can’t think about it.
+		do set_portrait("misty", "neutral")
+		Pepper: Oh. I just thought you might be interested, because you’re the Applejerry youtuber and all that
+	    - Oh… I thought it was good :c 
+			do set_portrait("misty", "sad")
+			do set_portrait("pepper", "neutral")
+			Pepper: Omg I didn't mean to judge
+=> core5
+
+~ core5
+- So... I've wanted to tell you this for while
+	do set_portrait("misty", "neutral")
+	Misty: I like you a lot. You're cute and I love your voice... do you feel the same?
 => climax
 
 
 ~ climax
 do stop_train()
-Misty: This is the climax
 if (Relationship.rel_value > 0):
-	Pepper: <Positive Climax>
+	Pepper: Oh! I didn’t know that you felt that way. I’ve suspected that you had feelings for me, but I thought that you were just being polite. 
+	do set_portrait("pepper", "surprised")
+	Misty: Oh no, I’ve had these feelings for you for a long while. I was just kind of afraid to admit it and figured I’d wait until now.
+	do set_portrait("misty", "surprised")
+	do start_rainbow_particles()
+	Pepper: oh my gosh! I like you too 
+	Misty: Really?! I’m so glad! We can definitely plan more dates if you want to.
+	
 elif (Relationship.rel_value < 0):
-	Pepper: <Negative Climax>
+	Pepper:  I’m sorry, but I don’t. I thought you were a friend, but after all the cringe stuff you said tonight, I just don’t think we can really be.
+	do set_portrait("pepper", "sad")
+	Misty: I didn’t mean to. I just have a hard time properly socializing, and while I wouldn’t mean to do anything to make you uncomfortable, I just struggle to talk face to face with people.
+	do start_particles()
+	do set_portrait("misty", "sad")
+	Pepper: I'm sorry, but I have to enforce my personal boundaries somewhere.
+
 elif (Relationship.rel_value == 0):
-	Pepper: <Neutral Climax>
+	Pepper: I never thought of it like that.
+	do set_portrait("pepper", "surprised")
+	Misty: What do you think? How do you feel about it?
+	Pepper: While I appreciate it, and enjoyed the night we had, I think I’d rather be happy with us staying friends instead if that’s okay with you.
+	do set_portrait("pepper", "neutral")
+	Misty: Oh. Yeah that’s fine. It was fun hanging out with you too.
+	do set_portrait("misty", "sad")
+	Pepper:  Hey, even if things didn’t work out like that, at least we can still hang out more . I’d love to watch more Magic is Friendship with you some time.
+	Misty: Yeah, I’d like that very much! Thanks.
 => ending
 
 ~ ending
-Narrator: It's the end of the story! Thanks for playing. 
 if (Relationship.rel_value > 0):
-	Pepper: <Positive Ending>
+	Narrator: You’re warmly greeted at Pepper’s door to see she prepared some snacks for you two to watch the latest episode of Magic is Friendship (MiF for short) and she motions to a blanket for you two to snuggle with on the couch.  (Rain cloud stops raining)
 elif (Relationship.rel_value < 0):
-	Pepper: <Negative Ending>
+	Narrator: You get off at the nearest train station and sit there crying into a ball, frantically thumbing the keyboard to talk to Applejerry for comfort. (Rain cloud turns black and rain pours very hard) [Try again?]
 elif (Relationship.rel_value == 0):
-	Pepper: <Neutral Ending>
+	Narrator: And so Misty watched Magic is Friendship with Pepper, with the knowledge her friend would be there at the end of the line.  [Try again for more?]
+Narrator: It's the end of the story! Thanks for playing. 
 => credits
 
 ~ credits
 Narrator: CREDITS\nCoffee Toffee/Luna: Writing, 3D Modeling \nDavid Solinsky/Smeppu: Character Art, Programming \nEmily Vee: Writing\nNathan Hahn: Programming, 2D Art, Music
 Narrator: Thanks for playing!
 - Play Again
-	Narrator: Sorry, can't do that.
-	#do full_restart()
+	Narrator: Sorry, can't do that. >:3
+	# do full_restart()
 - Quit
 	=> END
 

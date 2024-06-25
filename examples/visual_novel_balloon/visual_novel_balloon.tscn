@@ -49,8 +49,10 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="VisualNovelBalloon" type="CanvasLayer"]
+[node name="VisualNovelBalloon" type="CanvasLayer" node_paths=PackedStringArray("rain_particles", "rainbow_particles")]
 script = ExtResource("1_5w8hw")
+rain_particles = NodePath("RainParticles")
+rainbow_particles = NodePath("Balloon/RainbowSparkles")
 
 [node name="ParallaxTest" parent="." instance=ExtResource("2_3eav1")]
 
