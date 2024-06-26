@@ -72,7 +72,7 @@ motion_scale = Vector2(0.1, 1)
 motion_mirroring = Vector2(2048, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/terrainfar"]
-position = Vector2(866, 402)
+position = Vector2(866, -50)
 texture = ExtResource("2_qammr")
 
 [node name="terrainnear" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -81,7 +81,7 @@ motion_scale = Vector2(0.5, 1)
 motion_mirroring = Vector2(2048, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/terrainnear"]
-position = Vector2(979, 424)
+position = Vector2(979, -50)
 texture = ExtResource("3_4dhoq")
 
 [node name="terrainneartrees" type="ParallaxLayer" parent="ParallaxBackground"]
